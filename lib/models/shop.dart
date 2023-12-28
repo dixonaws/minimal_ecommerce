@@ -4,10 +4,10 @@ import 'package:minimal_ecommerce/models/product.dart';
 class Shop extends ChangeNotifier {
   // products for sale
   final List<Product> _shop = [
-    Product(name: "Product1", price: 99.99, description: "Item description"),
-    Product(name: "Product2", price: 199.99, description: "Item description"),
-    Product(name: "Product3", price: 299.99, description: "Item description"),
-    Product(name: "Product4", price: 599.99, description: "Item description"),
+    Product(name: "Sunglasses", price: 99.99, description: "Sunglasses", imagePath: "assets/sunglasses.png"),
+    Product(name: "Laptop", price: 5199.99, description: "Macbook Pro", imagePath: "assets/laptop.png"),
+    Product(name: "Bicycle", price: 8299.99, description: "Specialized Roubaix", imagePath: "assets/bike.png"),
+
   ];
 
   // user cart
