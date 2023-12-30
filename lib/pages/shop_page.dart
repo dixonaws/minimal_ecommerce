@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:minimal_ecommerce/components/my_drawer.dart';
 import 'package:minimal_ecommerce/components/my_product_tile.dart';
 import 'package:provider/provider.dart';
-import '../models/shop.dart';
+import 'package:minimal_ecommerce/models/shop.dart';
 
 class ShopPage extends StatelessWidget {
   const ShopPage({super.key});
