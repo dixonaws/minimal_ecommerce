@@ -1,16 +1,22 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:minimal_ecommerce/components/my_drawer.dart';
 import 'package:minimal_ecommerce/components/my_product_tile.dart';
 import 'package:provider/provider.dart';
 import 'package:minimal_ecommerce/models/shop.dart';
+import 'package:http/http.dart' as http;
+import '../models/product.dart';
 
 class ShopPage extends StatelessWidget {
-  const ShopPage({super.key});
+  ShopPage({super.key});
+
+  List<Product> products = [];
 
   @override
   Widget build(BuildContext context) {
     // access products
-    final products = context.watch<Shop>().shop;
+    // final products = context.watch<Shop>().shop;
 
     return Scaffold(
       appBar: AppBar(
@@ -27,32 +33,58 @@ class ShopPage extends StatelessWidget {
       ),
       drawer: MyDrawer(),
       backgroundColor: Theme.of(context).colorScheme.background,
-      body: ListView(
-        children: [
-          SizedBox(height: 25),
-          Center(
-              child: Text(
-            "Choose from a list of premium products",
-            style:
-                TextStyle(color: Theme.of(context).colorScheme.inversePrimary),
-          )),
-          SizedBox(
-            height: 550,
-            child: ListView.builder(
-              padding: EdgeInsets.all(15),
-              itemCount: products.length,
-              scrollDirection: Axis.horizontal,
-              itemBuilder: (context, index) {
-                // get each individual item from the shop
-                final product = products[index];
+      body: FutureBuilder(
+          future: getProducts(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.done) {
+              return ListView(
+                children: [
+                  SizedBox(height: 25),
+                  Center(
+                      child: Text(
+                    "Choose from a list of premium products",
+                    style: TextStyle(
+                        color: Theme.of(context).colorScheme.inversePrimary),
+                  )),
+                  SizedBox(
+                    height: 550,
+                    child: ListView.builder(
+                      padding: EdgeInsets.all(15),
+                      itemCount: products.length,
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (context, index) {
+                        // get each individual item from the shop
+                        final product = products[index];
 
-                // return as a product tile
-                return (MyProductTile(product: product));
-              },
-            ),
-          ),
-        ],
-      ),
+                        // return as a product tile
+                        return (MyProductTile(product: product));
+                      },
+                    ),
+                  ),
+                ],
+              );
+            } else {
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            } // else
+          }),
     );
+  }
+
+  // get products
+  Future getProducts() async {
+    var response = await http.get(Uri.http('localhost:8000', '/'));
+    var jsonData = jsonDecode(response.body);
+
+    for (var eachProduct in jsonData) {
+      var myProduct = Product(
+          name: eachProduct['name'],
+          price: eachProduct['price'],
+          description: eachProduct['description'],
+          imagePath: eachProduct['imagePath']);
+
+      products.add(myProduct);
+    }
   }
 }

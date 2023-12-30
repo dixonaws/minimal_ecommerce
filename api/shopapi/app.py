@@ -13,13 +13,27 @@ def index():
     # ]
     #
     lst_shop=[]
-    dict_product={}
+    dict_product0={}
+    dict_product1 = {}
+    dict_product2 = {}
 
-    dict_product['name']="Sunglasses"
-    dict_product['price']=99.99
-    dict_product['description']="Premium shades"
-    dict_product['imagePath']="/assets/sunglasses.png"
-    lst_shop.append(dict_product)
+    dict_product0['name']="Sunglasses"
+    dict_product0['price']=99.99
+    dict_product0['description']="Premium shades"
+    dict_product0['imagePath']="assets/sunglasses.png"
+    lst_shop.append(dict_product0)
+
+    dict_product1['name'] = "Laptop"
+    dict_product1['price'] = 5199.99
+    dict_product1['description'] = "Macbook Pro"
+    dict_product1['imagePath'] = "assets/laptop.png"
+    lst_shop.append(dict_product1)
+
+    dict_product2['name'] = "Bicycle"
+    dict_product2['price'] = 8199.99
+    dict_product2['description'] = "Specialized Roubaix"
+    dict_product2['imagePath'] = "assets/bike.png"
+    lst_shop.append(dict_product2)
 
     return lst_shop
 
