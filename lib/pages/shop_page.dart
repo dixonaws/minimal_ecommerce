@@ -74,7 +74,7 @@ class ShopPage extends StatelessWidget {
 
   // get products
   Future getProducts() async {
-    var response = await http.get(Uri.http('localhost:8000', '/'));
+    var response = await http.get(Uri.https('hwaeknqjl3.execute-api.us-east-1.amazonaws.com', '/api'));
     var jsonData = jsonDecode(response.body);
 
     for (var eachProduct in jsonData) {
