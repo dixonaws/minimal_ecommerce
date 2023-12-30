@@ -26,7 +26,6 @@ class MyProductTile extends StatelessWidget {
             },
             child: Text("Confirm"),
           ),
-
         ],
       ),
     );
@@ -62,7 +61,9 @@ class MyProductTile extends StatelessWidget {
                   padding: EdgeInsets.all(25),
                   width: double.infinity,
                   // child: Icon(Icons.favorite),
-                  child: Image.asset(product.imagePath),
+                  child:
+                  Image.network(product.imagePath),
+                  // Image.asset(product.imagePath),
                 ),
               ),
 
