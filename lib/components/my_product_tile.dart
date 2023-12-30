@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:minimal_ecommerce/models/product.dart';
 import 'package:minimal_ecommerce/models/shop.dart';
+import 'package:transparent_image/transparent_image.dart';
 
 class MyProductTile extends StatelessWidget {
   final Product product;
@@ -61,9 +62,9 @@ class MyProductTile extends StatelessWidget {
                   padding: EdgeInsets.all(25),
                   width: double.infinity,
                   // child: Icon(Icons.favorite),
-                  child:
-                  Image.network(product.imagePath),
-                  // Image.asset(product.imagePath),
+                  child: FadeInImage.assetNetwork(
+                      placeholder: 'assets/loading.gif',
+                      image: product.imagePath),
                 ),
               ),
 
