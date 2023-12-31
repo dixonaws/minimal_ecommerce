@@ -3,10 +3,8 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:minimal_ecommerce/components/my_drawer.dart';
 import 'package:minimal_ecommerce/components/my_product_tile.dart';
-import 'package:provider/provider.dart';
-import 'package:minimal_ecommerce/models/shop.dart';
 import 'package:http/http.dart' as http;
-import '../models/product.dart';
+import 'package:minimal_ecommerce/models/product.dart';
 
 class ShopPage extends StatelessWidget {
   ShopPage({super.key});
@@ -74,7 +72,8 @@ class ShopPage extends StatelessWidget {
 
   // get products
   Future getProducts() async {
-    var response = await http.get(Uri.https('hwaeknqjl3.execute-api.us-east-1.amazonaws.com', '/api'));
+    var response = await http.get(
+        Uri.https('hwaeknqjl3.execute-api.us-east-1.amazonaws.com', '/api'));
     var jsonData = jsonDecode(response.body);
 
     for (var eachProduct in jsonData) {
